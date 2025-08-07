@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+<!--    <color name="shade2">#B588F7</color>-->
+<!--    <color name="colorBackground">#FFFFFF</color> &lt;!&ndash; Light background &ndash;&gt;-->
+<!--    <color name="colorText">#000000</color>       &lt;!&ndash; Black text &ndash;&gt;-->
+<!--    <color name="colorPrimary">#6200EE</color>-->
+<!--    <color name="colorPrimaryDark">#3700B3</color>-->
+<!--    <color name="colorAccent">#03DAC5</color>-->
+<!--    <color name="colormenubar">#6200EE</color>-->
+
+    <color name="colorHint">#888888</color>
+    <color name="colorBackground">#FFFFFF</color>
+    <color name="colorText">#121212</color>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+    <color name="colormenubar">#6200EE</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#121212</color>
+    <color name="loginsingupbtn">#1E88E5</color>
+
+    <color name="appbarPurple">#673AB7</color> <!-- exact match -->
+
+    <color name="solvedStatusColor">#D32F2F</color> <!-- Red 700 -->
+    <color name="answerTextColor">#388E3C</color>   <!-- Green 700 -->
+
+
+
+</resources>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<!--    <color name="colorBackground">#121212</color> &lt;!&ndash; Dark background &ndash;&gt;-->
+<!--    <color name="colorText">#FFFFFF</color>       &lt;!&ndash; White text &ndash;&gt;-->
+<!--    <color name="colorPrimary">#BB86FC</color>-->
+<!--    <color name="colorPrimaryDark">#3700B3</color>-->
+<!--    <color name="colorAccent">#03DAC5</color>-->
+
+    <color name="colorBackground">#121212</color>
+    <color name="colorText">#FFFFFF</color>
+    <color name="colorPrimary">#BB86FC</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+    <color name="colormenubar">#1F1B24</color>
+
+    <color name="solvedStatusColor">#FF8A80</color> <!-- Soft Red for dark -->
+    <color name="answerTextColor">#A5D6A7</color>   <!-- Light Green for dark -->
+
+</resources>

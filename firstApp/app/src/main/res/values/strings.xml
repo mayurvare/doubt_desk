@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">DoubtDesk</string>
+    <string name="welcome_to_programming">Welcome to Programming !!</string>
+    <string name="welcome_to_kotlin">Welcome to Kotlin !!</string>
+    <string name="ProgrammingWorld">Programming World</string>
+    <string name="hello_kotlin">Hello Kotlin</string>
+    <string name="first_app">Sing Up</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="sing_up">Sing Up</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="default_web_client_id">68684424793-2eu20tjbh6ni9jq94ncsq7pu12fj2lem.apps.googleusercontent.com</string>
+</resources>

@@ -1,0 +1,23 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.FirstApp" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/appbarPurple</item> <!-- Purple color -->
+        <item name="colorOnPrimary">#FFFFFF</item> <!-- White text on toolbar -->
+    </style>
+
+<!--    Tool bar popup background and text color -->
+    <style name="PopupMenuOverlay" parent="ThemeOverlay.Material3.Light">
+        <item name="android:textColor">#000000</item> <!-- Black text -->
+        <item name="android:colorBackground">#FFFFFF</item> <!-- White background -->
+    </style>
+
+<!--    Tool bar icon (3 Dots ) color -->
+    <style name="ToolbarIconColorOverlay" parent="">
+        <item name="android:textColorPrimary">#FFFFFF</item>
+        <item name="android:colorControlNormal">#FFFFFF</item> <!-- This controls overflow icon -->
+    </style>
+
+
+    <style name="Theme.FirstApp" parent="Base.Theme.FirstApp" />
+
+</resources>
