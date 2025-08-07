@@ -1,6 +1,5 @@
 package com.example.firstapp
 
-
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
@@ -20,16 +19,16 @@ import com.google.firebase.auth.GoogleAuthProvider
 class login_Activity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private lateinit var firebaseAuth: FirebaseAuth
-//    private lateinit var googleSignInClient: GoogleSignInClient
-//
-//
-//    private val launcher =
-//        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-//            if (result.resultCode == Activity.RESULT_OK) {
-//                val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
-//                handleResult(task)
-//            }
-//        }
+    private lateinit var googleSignInClient: GoogleSignInClient
+
+
+    private val launcher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
+                handleResult(task)
+            }
+        }
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,21 +42,56 @@ class login_Activity : AppCompatActivity() {
 
         firebaseAuth = FirebaseAuth.getInstance()
 
-//        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-//            .requestIdToken(getString(R.string.default_web_client_id))
-//            .requestEmail()
-//            .build()
-//        googleSignInClient = GoogleSignIn.getClient(this, gso)
-//
-//
-//        binding.implicitibutton.setOnClickListener { signInWithGoogle() }
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
+        googleSignInClient = GoogleSignIn.getClient(this, gso)
 
+
+        binding.implicitibutton.setOnClickListener { signInWithGoogle() }
+
+        // Sign In with Google (Force chooser)
+        binding.implicitibutton.setOnClickListener {
+            googleSignInClient.signOut().addOnCompleteListener {
+                val signInIntent = googleSignInClient.signInIntent
+                launcher.launch(signInIntent)
+            }
+        }
+
+        // Navigate to Sign Up Activity
         binding.textView.setOnClickListener {
             Log.e("SignInActivity", "TextView clicked")
             val intent = Intent(this, singupActivity::class.java)
             startActivity(intent)
         }
 
+        // Forgot Password Logic
+        binding.tvForgotPassword.setOnClickListener {
+            val email = binding.emailEt.text.toString().trim()
+            if (email.isNotEmpty()) {
+                firebaseAuth.sendPasswordResetEmail(email)
+                    .addOnSuccessListener {
+                        Toast.makeText(
+                            this,
+                            "Reset link sent to your email.",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                    .addOnFailureListener {
+                        Toast.makeText(
+                            this,
+                            "Error: ${it.localizedMessage}",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+            } else {
+                Toast.makeText(this, "Please enter your registered email.", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        }
+
+        // Email/Password Login
         binding.button.setOnClickListener {
             val email = binding.emailEt.text.toString()
             val pass = binding.passET.text.toString()
@@ -98,45 +132,45 @@ class login_Activity : AppCompatActivity() {
                 Toast.makeText(this, "Empty Fields Are not Allowed", Toast.LENGTH_SHORT).show()
             }
         }
-
-
-//        val url = "https://www.google.com"
-//        val implicitibutton = findViewById<ImageView>(R.id.implicitibutton)
-//
-//        implicitibutton.setOnClickListener {
-//            val implicitIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-//            startActivity(implicitIntent)
-//        }
     }
 
-//    private fun signInWithGoogle() {
-//        val signInIntent = googleSignInClient.signInIntent
-//        launcher.launch(signInIntent)
-//    }
-//
-//    private fun handleResult(task: Task<GoogleSignInAccount>) {
-//        if (task.isSuccessful) {
-//            val account: GoogleSignInAccount? = task.result
-//            if (account != null) {
-//                updateUI(account)
-//            }
-//        } else {
-//            Toast.makeText(this, "Google Sign-In Failed", Toast.LENGTH_SHORT).show()
-//        }
-//    }
-//
-//    private fun updateUI(account: GoogleSignInAccount) {
-//        val credential = GoogleAuthProvider.getCredential(account.idToken, null)
-//        firebaseAuth.signInWithCredential(credential).addOnCompleteListener {
-//            if (it.isSuccessful) {
-//                Toast.makeText(this, "Google Sign-In Success", Toast.LENGTH_SHORT).show()
-//                startActivity(Intent(this, MainActivity::class.java))
-//                finish()
-//            } else {
-//                Toast.makeText(this, "Firebase Auth Failed", Toast.LENGTH_SHORT).show()
-//            }
-//        }
-//    }
+    private fun signInWithGoogle() {
+        val signInIntent = googleSignInClient.signInIntent
+        launcher.launch(signInIntent)
+    }
+
+    private fun handleResult(task: Task<GoogleSignInAccount>) {
+        if (task.isSuccessful) {
+            val account: GoogleSignInAccount? = task.result
+            if (account != null) {
+                updateUI(account)
+            }
+        } else {
+            Toast.makeText(this, "Google Sign-In Failed", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun updateUI(account: GoogleSignInAccount) {
+        val credential = GoogleAuthProvider.getCredential(account.idToken, null)
+        firebaseAuth.signInWithCredential(credential).addOnCompleteListener {
+            if (it.isSuccessful) {
+                val sharedPref = getSharedPreferences("MyAppPrefs", MODE_PRIVATE)
+                sharedPref.edit().putBoolean("isUserLoggedOut", false).apply()
+
+                val email = account.email
+                if (email == "admin123@gmail.com") {
+                    sharedPref.edit().putString("userRole", "admin").apply()
+                    startActivity(Intent(this, AdminDashboardActivity::class.java))
+                } else {
+                    sharedPref.edit().putString("userRole", "student").apply()
+                    startActivity(Intent(this, MainActivity::class.java))
+                }
+                finish()
+            } else {
+                Toast.makeText(this, "Firebase Auth Failed", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
 
     override fun onStart() {
         super.onStart()
@@ -173,5 +207,4 @@ class login_Activity : AppCompatActivity() {
         Log.e("Mayur", "loginActivity==============>: onDestroy() call")
 
     }
-
 }
