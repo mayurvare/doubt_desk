@@ -75,7 +75,7 @@ class login_Activity : AppCompatActivity() {
                         Toast.makeText(
                             this,
                             "Reset link sent to your email.",
-                            Toast.LENGTH_SHORT
+                            Toast.LENGTH_LONG
                         ).show()
                     }
                     .addOnFailureListener {
