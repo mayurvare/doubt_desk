@@ -110,7 +110,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="Save"
-        android:textColor="@color/colorText"
+        android:textColor="@color/white"
         app:layout_constraintTop_toBottomOf="@id/etdes"
         app:layout_constraintStart_toStartOf="@+id/etdes"
         app:layout_constraintEnd_toEndOf="@+id/etdes"
