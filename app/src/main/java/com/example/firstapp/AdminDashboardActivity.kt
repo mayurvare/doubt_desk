@@ -90,6 +90,9 @@ class AdminDashboardActivity : AppCompatActivity() {
     }
 
     private fun loadAllusersNotes() {
+        // Show progress bar before fetching
+        binding.progressBar.visibility = View.VISIBLE
+
         dbRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 noteList.clear()
@@ -101,12 +104,18 @@ class AdminDashboardActivity : AppCompatActivity() {
                     }
                 }
                 filterAndSearchNotes("")
+
+                // Hide progress bar after loading
+                binding.progressBar.visibility = View.GONE
             }
 
             override fun onCancelled(error: DatabaseError) {
                 Log.e("TAG", "onCancelled: database Error", )
                 Toast.makeText(this@AdminDashboardActivity, "Error: ${error.message}", Toast.LENGTH_SHORT
                 ).show()
+
+                // Hide progress bar if error
+                binding.progressBar.visibility = View.GONE
             }
         })
     }

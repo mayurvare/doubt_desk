@@ -271,6 +271,10 @@ class MainActivity : AppCompatActivity() {
     private fun loadUserNotes() {
         val currentUserId = firebaseAuth.currentUser?.uid ?: return
 
+
+        // Show loader before fetching
+        binding.progressBar.visibility = View.VISIBLE
+
         dbRef.child(currentUserId).child("notes")
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
@@ -280,6 +284,9 @@ class MainActivity : AppCompatActivity() {
                         note?.let { noteList.add(it) }
                     }
                     adapter.notifyDataSetChanged()
+
+                    // Hide loader after data loaded
+                    binding.progressBar.visibility = View.GONE
 
                     if (noteList.isEmpty()) {
                         binding.emptyMessage.visibility = View.VISIBLE
@@ -292,6 +299,8 @@ class MainActivity : AppCompatActivity() {
 
                 override fun onCancelled(error: DatabaseError) {
                     Log.e("FirebaseUserLoad3333", "Database error: ${error.message}")
+                    // Hide loader even if error occurs
+                    binding.progressBar.visibility = View.GONE
                 }
             })
     }
