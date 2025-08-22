@@ -93,7 +93,7 @@ class AdminDashboardActivity : AppCompatActivity() {
                 else -> true                // other tabs
             }
 
-            (matchName || matchTitle) && matchClass  && matchSolved
+            (matchName || matchTitle) && matchClass && matchSolved
         }
 
         adapter.updateList(filtered)
@@ -121,8 +121,9 @@ class AdminDashboardActivity : AppCompatActivity() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Log.e("TAG", "onCancelled: database Error", )
-                Toast.makeText(this@AdminDashboardActivity, "Error: ${error.message}", Toast.LENGTH_SHORT
+                Log.e("TAG", "onCancelled: database Error")
+                Toast.makeText(
+                    this@AdminDashboardActivity, "Error: ${error.message}", Toast.LENGTH_SHORT
                 ).show()
 
                 // Hide progress bar if error
