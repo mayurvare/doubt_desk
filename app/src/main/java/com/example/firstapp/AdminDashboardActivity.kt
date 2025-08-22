@@ -49,6 +49,9 @@ class AdminDashboardActivity : AppCompatActivity() {
         binding.classTabLayout.addTab(binding.classTabLayout.newTab().setText("FY"))
         binding.classTabLayout.addTab(binding.classTabLayout.newTab().setText("SY"))
         binding.classTabLayout.addTab(binding.classTabLayout.newTab().setText("TY"))
+        binding.classTabLayout.addTab(binding.classTabLayout.newTab().setText("Solved"))
+        binding.classTabLayout.addTab(binding.classTabLayout.newTab().setText("Unsolved"))
+
 
         binding.classTabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
@@ -82,7 +85,15 @@ class AdminDashboardActivity : AppCompatActivity() {
             val matchTitle = note.title.lowercase().contains(query)
             val matchClass =
                 selectedClass.lowercase() == "all" || note.studentClass.lowercase() == selectedClass.lowercase()
-            (matchName || matchTitle) && matchClass
+
+            //New Solved/Unsolved filter
+            val matchSolved = when (selectedTab) {
+                4 -> note.solved == true    // Solved tab
+                5 -> note.solved == false   // Unsolved tab
+                else -> true                // other tabs
+            }
+
+            (matchName || matchTitle) && matchClass  && matchSolved
         }
 
         adapter.updateList(filtered)
