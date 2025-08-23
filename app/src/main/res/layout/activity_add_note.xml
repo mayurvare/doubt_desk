@@ -1,121 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground"
-    android:textColor="@color/colorText"
-    tools:context=".AddNote">
+    android:fillViewport="true">
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:textSize="24sp"
+        android:background="@color/colorBackground"
         android:textColor="@color/colorText"
-        android:textStyle="bold"
-        android:text="Enter your Question?"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:context=".AddNote">
 
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/etNamee"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:hint="Name"
-        app:layout_constraintTop_toBottomOf="@id/textView3"
-        app:layout_constraintStart_toStartOf="@+id/textView3"
-        app:layout_constraintEnd_toEndOf="@+id/textView3">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etName"
-            android:inputType="text"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:textSize="24sp"
             android:textColor="@color/colorText"
-            android:textColorHint="@color/colorText" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:textStyle="bold"
+            android:text="Enter your Question?"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-
-    <!-- Class Field -->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/etclass"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:hint="Class"
-        app:layout_constraintTop_toBottomOf="@id/etNamee"
-        app:layout_constraintStart_toStartOf="@+id/textView3"
-        app:layout_constraintEnd_toEndOf="@+id/textView3">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etClass"
-            android:inputType="text"
-            android:layout_width="match_parent"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/etNamee"
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorText"
-            android:textColorHint="@color/colorText" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginTop="20dp"
+            android:hint="Name"
+            app:layout_constraintTop_toBottomOf="@id/textView3"
+            app:layout_constraintStart_toStartOf="@+id/textView3"
+            app:layout_constraintEnd_toEndOf="@+id/textView3">
 
-    <!-- Title Field -->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/ettitle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:hint="Subject name"
-        app:layout_constraintTop_toBottomOf="@id/etclass"
-        app:layout_constraintStart_toStartOf="@+id/etclass"
-        app:layout_constraintEnd_toEndOf="@+id/etclass">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etName"
+                android:inputType="text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorText"
+                android:textColorHint="@color/colorText" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etTitle"
-            android:inputType="text"
-            android:layout_width="match_parent"
+        <!-- Class Field -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/etclass"
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorText"
-            android:textColorHint="@color/colorText" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginTop="20dp"
+            android:hint="Class"
+            app:layout_constraintTop_toBottomOf="@id/etNamee"
+            app:layout_constraintStart_toStartOf="@+id/textView3"
+            app:layout_constraintEnd_toEndOf="@+id/textView3">
 
-    <!-- Description Field -->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/etdes"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:hint="Question"
-        app:layout_constraintTop_toBottomOf="@id/ettitle"
-        app:layout_constraintStart_toStartOf="@+id/ettitle"
-        app:layout_constraintEnd_toEndOf="@+id/ettitle">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etClass"
+                android:inputType="text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorText"
+                android:textColorHint="@color/colorText" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_description"
-            android:inputType="text"
-            android:layout_width="match_parent"
+        <!-- Title Field -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ettitle"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorText"
-            android:textColorHint="@color/colorText" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginTop="20dp"
+            android:hint="Subject name"
+            app:layout_constraintTop_toBottomOf="@id/etclass"
+            app:layout_constraintStart_toStartOf="@+id/etclass"
+            app:layout_constraintEnd_toEndOf="@+id/etclass">
 
-    <!-- Save Button -->
-    <Button
-        android:id="@+id/saveNoteButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Save"
-        android:textColor="@color/white"
-        app:layout_constraintTop_toBottomOf="@id/etdes"
-        app:layout_constraintStart_toStartOf="@+id/etdes"
-        app:layout_constraintEnd_toEndOf="@+id/etdes"
-        app:layout_constraintHorizontal_bias="0.475" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etTitle"
+                android:inputType="text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorText"
+                android:textColorHint="@color/colorText" />
+        </com.google.android.material.textfield.TextInputLayout>
 
+        <!-- Description Field -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/etdes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:hint="Question"
+            app:layout_constraintTop_toBottomOf="@id/ettitle"
+            app:layout_constraintStart_toStartOf="@+id/ettitle"
+            app:layout_constraintEnd_toEndOf="@+id/ettitle">
 
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_description"
+                android:inputType="text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorText"
+                android:textColorHint="@color/colorText" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <!-- Save Button -->
+        <Button
+            android:id="@+id/saveNoteButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Save"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@id/etdes"
+            app:layout_constraintStart_toStartOf="@+id/etdes"
+            app:layout_constraintEnd_toEndOf="@+id/etdes"
+            app:layout_constraintHorizontal_bias="0.475" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
