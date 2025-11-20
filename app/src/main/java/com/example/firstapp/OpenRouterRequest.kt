@@ -1,9 +1,16 @@
 package com.example.firstapp
 
+//data class OpenRouterRequest(
+//    val model: String,
+//    val messages: List<Message>
+//)
+
 data class OpenRouterRequest(
     val model: String,
-    val messages: List<Message>
+    val messages: List<Message>,
+    val max_tokens: Int = 200
 )
+
 
 data class Message(
     val role: String,
