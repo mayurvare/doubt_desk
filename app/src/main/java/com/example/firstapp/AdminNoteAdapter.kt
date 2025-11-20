@@ -39,7 +39,8 @@ class AdminNoteAdapter(
                 binding.etYoutubeLink.visibility = View.GONE
 
                 //binding.youtubeLinkTextView.visibility = if (!note.youtubeLink.isNullOrEmpty()) View.VISIBLE else View.GONE
-                binding.youtubeLinkTextView.visibility = if (!note.youtubeLink.isNullOrEmpty() && isExpanded) View.VISIBLE else View.GONE
+                binding.youtubeLinkTextView.visibility =
+                    if (!note.youtubeLink.isNullOrEmpty() && isExpanded) View.VISIBLE else View.GONE
                 binding.youtubeLinkTextView.text = note.youtubeLink
                 binding.youtubeLinkTextView.setOnClickListener {
                     try {
@@ -150,8 +151,10 @@ class AdminNoteAdapter(
 
         val question = note.description
         val request = OpenRouterRequest(
-            model = "mistralai/mistral-7b-instruct",
-            messages = listOf(Message("user", question))
+//            model = "mistralai/mistral-7b-instruct",
+            model = "llama-3.1-8b-instant",
+            messages = listOf(Message("user", question)),
+            max_tokens = 200
         )
 
         holder.binding.btnAskAI.setOnClickListener {
@@ -159,7 +162,8 @@ class AdminNoteAdapter(
             holder.binding.btnAskAI.text = "Loading..."
 
             val apiKey =
-                "Bearer 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"
+//                "Bearer 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"
+                "Bearer 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"
             OpenRouterClient.instance.getAIAnswer(
                 apiKey = apiKey,
                 request = request
