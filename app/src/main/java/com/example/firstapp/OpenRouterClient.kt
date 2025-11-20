@@ -2,8 +2,10 @@ package com.example.firstapp
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+
 object OpenRouterClient {
-    private const val BASE_URL = "https://openrouter.ai/api/v1/"
+    //    private const val BASE_URL = "https://openrouter.ai/api/v1/"
+    private const val BASE_URL = "https://api.groq.com/openai/v1/"
 
 
     val instance: OpenRouterApi by lazy {
