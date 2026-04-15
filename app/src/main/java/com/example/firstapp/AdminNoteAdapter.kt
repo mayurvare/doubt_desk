@@ -12,6 +12,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import android.content.Intent
 import android.net.Uri
+import com.example.firstapp.config.ApiConfig
 
 
 class AdminNoteAdapter(

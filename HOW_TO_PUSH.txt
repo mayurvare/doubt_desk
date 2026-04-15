@@ -1,0 +1,53 @@
+========================================
+  SAME BRANCH MEIN PUSH KARNE KA TARIKA
+========================================
+
+STEP 1: GitHub Link Pe Jao
+---------------------------
+Is link ko browser mein kholo:
+https://github.com/mayurvare/doubt_desk/security/secret-scanning/unblock-secret/3CNqtJiXLRPhsqcwjnJsppqDqWK
+
+
+STEP 2: "Allow Secret" Button Click Karo
+-----------------------------------------
+- GitHub page pe "Allow this secret" ya similar button dikhega
+- Us button ko click karo
+- Confirm karo
+
+
+STEP 3: Push Karo
+-----------------
+Terminal mein ye command run karo:
+
+git push origin master
+
+
+DONE! ✅
+--------
+Push ho jayega same branch mein.
+
+
+========================================
+  IMPORTANT NOTES
+========================================
+
+✅ Tumhari API key ab safe file mein hai:
+   - local.properties (ye Git mein nahi jayegi)
+
+✅ .gitignore mein already add hai:
+   - local.properties
+   - google-services.json
+
+⚠️ Agar future mein API key change karni ho:
+   - local.properties file edit karo
+   - Git mein commit mat karo
+
+
+========================================
+  BACKUP INFO
+========================================
+
+Your API Keys (saved in local.properties):
+- Current: Bearer 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
+- Old: Bearer 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
+
