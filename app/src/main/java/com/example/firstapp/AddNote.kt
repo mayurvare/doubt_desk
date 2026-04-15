@@ -38,7 +38,7 @@ class AddNote : AppCompatActivity() {
 
             if (title.isEmpty() || description.isEmpty() || studentClass.isEmpty()) {
                 Log.e("ValidationError", "Fields are missing")
-                Toast.makeText(this, "please fill the all field", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.note_empty_fields), Toast.LENGTH_SHORT).show()
             } else {
 
                 val currentUser = auth.currentUser
@@ -71,7 +71,7 @@ class AddNote : AppCompatActivity() {
                                         "Saved by user: ${user.email ?: "Unknown Email"} (UID: ${user.uid})"
                                     )
                                     Log.e("AddNoteData", "Saved NoteItem: $noteItem")
-                                    Toast.makeText(this, "Note Save Successful", Toast.LENGTH_SHORT)
+                                    Toast.makeText(this, getString(R.string.note_save_success), Toast.LENGTH_SHORT)
                                         .show()
                                     finish()
                                 } else {
@@ -79,7 +79,7 @@ class AddNote : AppCompatActivity() {
                                         "AddNoteError",
                                         "Error saving note: ${task.exception?.message}"
                                     )
-                                    Toast.makeText(this, "Failed to save Note ", Toast.LENGTH_SHORT)
+                                    Toast.makeText(this, getString(R.string.note_save_failed), Toast.LENGTH_SHORT)
                                         .show()
                                 }
                             }

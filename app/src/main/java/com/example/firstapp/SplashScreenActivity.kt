@@ -29,7 +29,7 @@ class SplashScreenActivity : AppCompatActivity() {
             val currentUser = FirebaseAuth.getInstance().currentUser
 
             if (currentUser != null && !isUserLoggedOut) {
-                if (userRole == "admin") {
+                if (userRole.equals("admin", ignoreCase = true)) {
                     startActivity(Intent(this, AdminDashboardActivity::class.java))
                 } else {
                     // User is login

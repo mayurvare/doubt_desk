@@ -1,30 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-<!--    <color name="shade2">#B588F7</color>-->
-<!--    <color name="colorBackground">#FFFFFF</color> &lt;!&ndash; Light background &ndash;&gt;-->
-<!--    <color name="colorText">#000000</color>       &lt;!&ndash; Black text &ndash;&gt;-->
-<!--    <color name="colorPrimary">#6200EE</color>-->
-<!--    <color name="colorPrimaryDark">#3700B3</color>-->
-<!--    <color name="colorAccent">#03DAC5</color>-->
-<!--    <color name="colormenubar">#6200EE</color>-->
-
-    <color name="colorHint">#888888</color>
-    <color name="colorBackground">#FFFFFF</color>
-    <color name="colorText">#121212</color>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
-    <color name="colormenubar">#6200EE</color>
+    <!-- Primary Colors -->
+    <color name="colorPrimary">#673AB7</color>
+    <color name="colorPrimaryDark">#512DA8</color>
+    <color name="colorPrimaryLight">#9575CD</color>
+    <color name="colorAccent">#FF6F00</color>
+    <color name="appbarPurple">#673AB7</color>
+    
+    <!-- Background Colors -->
+    <color name="colorBackground">#F5F5F5</color>
+    <color name="colorSurface">#FFFFFF</color>
+    <color name="colorCardBackground">#FFFFFF</color>
+    
+    <!-- Text Colors -->
+    <color name="colorText">#1A1A1A</color>
+    <color name="colorTextSecondary">#666666</color>
+    <color name="colorHint">#999999</color>
+    
+    <!-- Status Colors -->
+    <color name="solvedStatusColor">#C62828</color>
+    <color name="answerTextColor">#2E7D32</color>
+    <color name="pendingStatusColor">#EF6C00</color>
+    
+    <!-- Button Colors -->
+    <color name="buttonPrimary">#673AB7</color>
+    <color name="buttonSecondary">#FF6F00</color>
+    <color name="buttonText">#FFFFFF</color>
+    <color name="loginsingupbtn">#673AB7</color>
+    
+    <!-- Swipe Action Colors -->
+    <color name="swipeEditBackground">#673AB7</color>
+    <color name="swipeDeleteBackground">#FF6F00</color>
+    
+    <!-- Utility Colors -->
     <color name="white">#FFFFFF</color>
-    <color name="black">#121212</color>
-    <color name="loginsingupbtn">#1E88E5</color>
-
-    <color name="appbarPurple">#673AB7</color> <!-- exact match -->
-
-    <color name="solvedStatusColor">#D32F2F</color> <!-- Red 700 -->
-    <color name="answerTextColor">#388E3C</color>   <!-- Green 700 -->
-
-
-
+    <color name="black">#212121</color>
+    <color name="divider">#E0E0E0</color>
+    <color name="shadow">#1A000000</color>
+    
+    <!-- Gradient Colors -->
+    <color name="gradientStart">#7E57C2</color>
+    <color name="gradientEnd">#AB47BC</color>
 </resources>

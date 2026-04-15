@@ -46,14 +46,14 @@ class singupActivity : AppCompatActivity() {
                             startActivity(intent)
                         } else {
                             Log.e("TAG", "onCreate: ${it.exception.toString()}")
-                            Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this, getString(R.string.signup_failed), Toast.LENGTH_SHORT).show()
                         }
                     }
                 } else {
-                    Toast.makeText(this, "Password is not matching", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.signup_password_mismatch), Toast.LENGTH_SHORT).show()
                 }
             } else {
-                Toast.makeText(this, "Empty Fields Are not Allowed", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.signup_empty_fields), Toast.LENGTH_SHORT).show()
             }
         }
     }

@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.edit
 import com.example.firstapp.databinding.ActivityLoginBinding
 import com.google.android.gms.auth.api.signin.*
 import com.google.android.gms.tasks.Task
@@ -74,19 +75,19 @@ class login_Activity : AppCompatActivity() {
                     .addOnSuccessListener {
                         Toast.makeText(
                             this,
-                            "Reset link sent to your email.",
+                            getString(R.string.password_reset_sent),
                             Toast.LENGTH_LONG
                         ).show()
                     }
                     .addOnFailureListener {
                         Toast.makeText(
                             this,
-                            "Error: ${it.localizedMessage}",
+                            getString(R.string.password_reset_failed),
                             Toast.LENGTH_SHORT
                         ).show()
                     }
             } else {
-                Toast.makeText(this, "Please enter your registered email.", Toast.LENGTH_SHORT)
+                Toast.makeText(this, getString(R.string.enter_registered_email), Toast.LENGTH_SHORT)
                     .show()
             }
         }
@@ -106,17 +107,23 @@ class login_Activity : AppCompatActivity() {
                         Log.e("Mayur", "Login successful for email: $email")
 
                         val sharedPref = getSharedPreferences("MyAppPrefs", MODE_PRIVATE)
-                        sharedPref.edit().putBoolean("isUserLoggedOut", false).apply()
+                        sharedPref.edit {
+                            putBoolean("isUserLoggedOut", false)
+                        }
 
-                        if (email == "admin123@gmail.com") {
+                        if (email.equals("admin123@gmail.com", ignoreCase = true)) {
                             Log.e("Mayur", "Logged in user is ADMIN")
-                            sharedPref.edit().putString("userRole", "admin").apply()
+                            sharedPref.edit {
+                                putString("userRole", "admin")
+                            }
                             val intent = Intent(this, AdminDashboardActivity::class.java)
                             startActivity(intent)
                             finish()
                         } else {
                             Log.e("Mayur", "Logged in user is STUDENT")
-                            sharedPref.edit().putString("userRole", "student").apply()
+                            sharedPref.edit {
+                                putString("userRole", "student")
+                            }
                             val intent = Intent(this, MainActivity::class.java)
                             startActivity(intent)
                             finish()
@@ -124,12 +131,12 @@ class login_Activity : AppCompatActivity() {
 
                     } else {
                         Log.e("Mayur", "Login Failed: ${it.exception?.message}")
-                        Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, getString(R.string.login_failed), Toast.LENGTH_SHORT).show()
                     }
                 }
             } else {
                 Log.e("Mayur", "Email or Password field is empty.")
-                Toast.makeText(this, "Empty Fields Are not Allowed", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.login_empty_fields), Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -146,7 +153,7 @@ class login_Activity : AppCompatActivity() {
                 updateUI(account)
             }
         } else {
-            Toast.makeText(this, "Google Sign-In Failed", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.google_signin_failed), Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -155,19 +162,25 @@ class login_Activity : AppCompatActivity() {
         firebaseAuth.signInWithCredential(credential).addOnCompleteListener {
             if (it.isSuccessful) {
                 val sharedPref = getSharedPreferences("MyAppPrefs", MODE_PRIVATE)
-                sharedPref.edit().putBoolean("isUserLoggedOut", false).apply()
+                sharedPref.edit {
+                    putBoolean("isUserLoggedOut", false)
+                }
 
                 val email = account.email
-                if (email == "admin123@gmail.com") {
-                    sharedPref.edit().putString("userRole", "admin").apply()
+                if (email.equals("admin123@gmail.com", ignoreCase = true)) {
+                    sharedPref.edit {
+                        putString("userRole", "admin")
+                    }
                     startActivity(Intent(this, AdminDashboardActivity::class.java))
                 } else {
-                    sharedPref.edit().putString("userRole", "student").apply()
+                    sharedPref.edit {
+                        putString("userRole", "student")
+                    }
                     startActivity(Intent(this, MainActivity::class.java))
                 }
                 finish()
             } else {
-                Toast.makeText(this, "Firebase Auth Failed", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.firebase_auth_failed), Toast.LENGTH_SHORT).show()
             }
         }
     }

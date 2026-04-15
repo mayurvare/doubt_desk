@@ -6,9 +6,12 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
+import androidx.core.content.ContextCompat
+import androidx.core.content.edit
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.firstapp.databinding.ActivityAdminDashboardBinding
 import com.google.android.material.tabs.TabLayout
@@ -18,7 +21,6 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import androidx.core.content.ContextCompat
 
 class AdminDashboardActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAdminDashboardBinding
@@ -43,7 +45,7 @@ class AdminDashboardActivity : AppCompatActivity() {
 
         dbRef = FirebaseDatabase.getInstance().getReference("users")
 
-        loadAllusersNotes()
+        loadAllUsersNotes()
 
         binding.classTabLayout.addTab(binding.classTabLayout.newTab().setText("All"))
         binding.classTabLayout.addTab(binding.classTabLayout.newTab().setText("FY"))
@@ -83,14 +85,14 @@ class AdminDashboardActivity : AppCompatActivity() {
         val filtered = noteList.filter { note ->
             val matchName = note.name.lowercase().contains(query)
             val matchTitle = note.title.lowercase().contains(query)
-            val matchClass =
-                selectedClass.lowercase() == "all" || note.studentClass.lowercase() == selectedClass.lowercase()
+            val matchClass = selectedClass.equals("all", ignoreCase = true) || 
+                note.studentClass.equals(selectedClass, ignoreCase = true)
 
             //New Solved/Unsolved filter
             val matchSolved = when (selectedTab) {
-                4 -> note.solved == true    // Solved tab
-                5 -> note.solved == false   // Unsolved tab
-                else -> true                // other tabs
+                4 -> note.solved    // Solved tab
+                5 -> !note.solved   // Unsolved tab
+                else -> true        // other tabs
             }
 
             (matchName || matchTitle) && matchClass && matchSolved
@@ -100,7 +102,7 @@ class AdminDashboardActivity : AppCompatActivity() {
         binding.emptyMessage.visibility = if (filtered.isEmpty()) View.VISIBLE else View.GONE
     }
 
-    private fun loadAllusersNotes() {
+    private fun loadAllUsersNotes() {
         // Show progress bar before fetching
         binding.progressBar.visibility = View.VISIBLE
 
@@ -142,7 +144,7 @@ class AdminDashboardActivity : AppCompatActivity() {
         searchView?.setBackgroundResource(R.drawable.search_view_bg)
 
         // Access the EditText inside SearchView
-        val searchEditText = searchView?.findViewById<android.widget.EditText>(
+        val searchEditText = searchView?.findViewById<EditText>(
             androidx.appcompat.R.id.search_src_text
         )
         // Set hint color
@@ -180,7 +182,9 @@ class AdminDashboardActivity : AppCompatActivity() {
         firebaseAuth.signOut()
         // Logout flag
         val sharedPref = getSharedPreferences("MyAppPrefs", MODE_PRIVATE)
-        sharedPref.edit().putBoolean("isUserLoggedOut", true).apply()
+        sharedPref.edit {
+            putBoolean("isUserLoggedOut", true)
+        }
 
         // LoginActivity  redirect
         val intent = Intent(this, login_Activity::class.java)

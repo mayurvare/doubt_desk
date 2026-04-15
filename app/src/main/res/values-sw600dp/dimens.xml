@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Tablet dimensions -->
+    <!-- Spacing -->
+    <dimen name="spacing_tiny">6dp</dimen>
+    <dimen name="spacing_small">12dp</dimen>
+    <dimen name="spacing_medium">20dp</dimen>
+    <dimen name="spacing_large">32dp</dimen>
+    <dimen name="spacing_xlarge">40dp</dimen>
+    
+    <!-- Text Sizes - Larger for tablets -->
+    <dimen name="text_size_small">14sp</dimen>
+    <dimen name="text_size_body">16sp</dimen>
+    <dimen name="text_size_medium">18sp</dimen>
+    <dimen name="text_size_large">20sp</dimen>
+    <dimen name="text_size_xlarge">24sp</dimen>
+    <dimen name="text_size_title">28sp</dimen>
+    <dimen name="text_size_heading">32sp</dimen>
+    <dimen name="text_size_display">40sp</dimen>
+    
+    <!-- Card -->
+    <dimen name="card_corner_radius">20dp</dimen>
+    <dimen name="card_elevation">4dp</dimen>
+    <dimen name="card_padding">20dp</dimen>
+    
+    <!-- Button -->
+    <dimen name="button_height">64dp</dimen>
+    <dimen name="button_corner_radius">16dp</dimen>
+    
+    <!-- Input -->
+    <dimen name="input_padding">20dp</dimen>
+    
+    <!-- Icon -->
+    <dimen name="icon_size_small">24dp</dimen>
+    <dimen name="icon_size_medium">28dp</dimen>
+    <dimen name="icon_size_large">36dp</dimen>
+</resources>

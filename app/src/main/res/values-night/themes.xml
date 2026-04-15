@@ -1,20 +1,30 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.FirstApp" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/appbarPurple</item> <!-- Same Purple as light mode -->
-        <item name="colorOnPrimary">#FFFFFF</item> <!-- White text on toolbar -->
+        <item name="colorPrimary">@color/appbarPurple</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorSecondary">@color/colorAccent</item>
+        <item name="android:statusBarColor">@color/appbarPurple</item>
+        <item name="android:windowLightStatusBar">false</item>
     </style>
 
-    <!--    Tool bar popup background and text color -->
+    <!-- Tool bar popup background and text color -->
     <style name="PopupMenuOverlay" parent="ThemeOverlay.Material3.Dark">
-        <item name="android:textColor">#FFFFFF</item> <!-- White text -->
-        <item name="android:colorBackground">#212121</item> <!-- Dark background -->
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:colorBackground">#2C2C2C</item>
     </style>
 
-    <!--    Tool bar icon (3 Dots ) color -->
+    <!-- Tool bar icon (3 Dots) color -->
     <style name="ToolbarIconColorOverlay" parent="">
         <item name="android:textColorPrimary">#FFFFFF</item>
         <item name="android:colorControlNormal">#FFFFFF</item>
+    </style>
+
+    <!-- Toolbar Title Style -->
+    <style name="ToolbarTitleStyle" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/white</item>
     </style>
 
 </resources>

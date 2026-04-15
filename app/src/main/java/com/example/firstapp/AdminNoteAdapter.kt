@@ -54,14 +54,14 @@ class AdminNoteAdapter(
                         } else {
                             Toast.makeText(
                                 binding.root.context,
-                                "Invalid or empty link",
+                                binding.root.context.getString(R.string.invalid_link),
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
                     } catch (e: Exception) {
                         Toast.makeText(
                             binding.root.context,
-                            "Error: ${e.message}",
+                            binding.root.context.getString(R.string.link_error, e.message),
                             Toast.LENGTH_SHORT
                         ).show()
                     }
@@ -114,7 +114,7 @@ class AdminNoteAdapter(
             if (answerText.isEmpty()) {
                 Toast.makeText(
                     holder.itemView.context,
-                    "Please enter an answer",
+                    holder.itemView.context.getString(R.string.answer_empty),
                     Toast.LENGTH_SHORT
                 ).show()
                 return@setOnClickListener
@@ -137,13 +137,13 @@ class AdminNoteAdapter(
                     note.answer = answerText
                     notifyItemChanged(position)
                     holder.binding.etYoutubeLink.visibility = View.GONE
-                    Toast.makeText(holder.itemView.context, "Answer submitted", Toast.LENGTH_SHORT)
+                    Toast.makeText(holder.itemView.context, holder.itemView.context.getString(R.string.answer_submitted), Toast.LENGTH_SHORT)
                         .show()
                 }
                 .addOnFailureListener {
                     Toast.makeText(
                         holder.itemView.context,
-                        "Error: ${it.message}",
+                        holder.itemView.context.getString(R.string.answer_submit_failed, it.message),
                         Toast.LENGTH_SHORT
                     ).show()
                 }
@@ -159,11 +159,9 @@ class AdminNoteAdapter(
 
         holder.binding.btnAskAI.setOnClickListener {
             holder.binding.btnAskAI.isEnabled = false
-            holder.binding.btnAskAI.text = "Loading..."
+            holder.binding.btnAskAI.text = holder.itemView.context.getString(R.string.ai_loading)
 
-            val apiKey =
-//                "Bearer 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"
-                "Bearer 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"
+            val apiKey = ApiConfig.getAiApiKey()
             OpenRouterClient.instance.getAIAnswer(
                 apiKey = apiKey,
                 request = request
@@ -173,7 +171,7 @@ class AdminNoteAdapter(
                     response: Response<OpenRouterResponse>
                 ) {
                     holder.binding.btnAskAI.isEnabled = true
-                    holder.binding.btnAskAI.text = "Ask AI"
+                    holder.binding.btnAskAI.text = holder.itemView.context.getString(R.string.ask_ai)
 
                     if (response.isSuccessful) {
                         val answer = response.body()?.choices?.firstOrNull()?.message?.content
@@ -182,14 +180,14 @@ class AdminNoteAdapter(
                         } else {
                             Toast.makeText(
                                 holder.itemView.context,
-                                "No answer received",
+                                holder.itemView.context.getString(R.string.ai_no_answer),
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
                     } else {
                         Toast.makeText(
                             holder.itemView.context,
-                            "Error: ${response.code()}",
+                            holder.itemView.context.getString(R.string.ai_error, response.code().toString()),
                             Toast.LENGTH_SHORT
                         ).show()
                     }
@@ -197,10 +195,10 @@ class AdminNoteAdapter(
 
                 override fun onFailure(call: Call<OpenRouterResponse>, t: Throwable) {
                     holder.binding.btnAskAI.isEnabled = true
-                    holder.binding.btnAskAI.text = "Ask AI"
+                    holder.binding.btnAskAI.text = holder.itemView.context.getString(R.string.ask_ai)
                     Toast.makeText(
                         holder.itemView.context,
-                        "Failed: ${t.message}",
+                        holder.itemView.context.getString(R.string.ai_network_error, t.message),
                         Toast.LENGTH_SHORT
                     ).show()
                 }

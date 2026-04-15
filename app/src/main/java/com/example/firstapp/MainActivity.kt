@@ -8,6 +8,8 @@ import android.view.View
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.core.content.edit
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.firstapp.databinding.ActivityMainBinding
 import com.example.firstapp.databinding.DialogUpdateNoteBinding
@@ -25,7 +27,6 @@ import android.graphics.Paint
 import android.graphics.drawable.Drawable
 import android.util.Log
 import androidx.appcompat.widget.SearchView
-import androidx.core.content.ContextCompat
 
 
 class MainActivity : AppCompatActivity() {
@@ -124,7 +125,7 @@ class MainActivity : AppCompatActivity() {
 
                 if (dX > 0) {
                     // Right swipe (Edit)
-                    paint.color = Color.parseColor("#2196F3")
+                    paint.color = ContextCompat.getColor(this@MainActivity, R.color.swipeEditBackground)
                     c.drawRect(
                         itemView.left.toFloat(), itemView.top.toFloat(),
                         itemView.left + dX, itemView.bottom.toFloat(), paint
@@ -153,7 +154,7 @@ class MainActivity : AppCompatActivity() {
 
                 } else if (dX < 0) {
                     // Left swipe (Delete)
-                    paint.color = Color.parseColor("#f44336")
+                    paint.color = ContextCompat.getColor(this@MainActivity, R.color.swipeDeleteBackground)
                     c.drawRect(
                         itemView.right + dX, itemView.top.toFloat(),
                         itemView.right.toFloat(), itemView.bottom.toFloat(), paint
@@ -214,14 +215,14 @@ class MainActivity : AppCompatActivity() {
     private fun deleteSelectedNotes() {
         val selectedNotes = adapter.getSelectedNotes()
         if (selectedNotes.isEmpty()) {
-            Toast.makeText(this, "No notes selected", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.no_notes_selected), Toast.LENGTH_SHORT).show()
             return
         }
 
         AlertDialog.Builder(this)
-            .setTitle("Delete Notes")
-            .setMessage("Are you sure you want to delete ${selectedNotes.size} note(s)?")
-            .setPositiveButton("Yes") { dialog, _ ->
+            .setTitle(getString(R.string.delete_confirmation_title))
+            .setMessage(getString(R.string.delete_confirmation_message, selectedNotes.size))
+            .setPositiveButton(getString(R.string.yes)) { dialog, _ ->
                 val currentUserId = firebaseAuth.currentUser?.uid ?: return@setPositiveButton
 
                 val deletedNotes = selectedNotes.toList()
@@ -229,12 +230,12 @@ class MainActivity : AppCompatActivity() {
                     dbRef.child(currentUserId).child("notes").child(note.noteId).removeValue()
                 }
 
-                Toast.makeText(this, "${selectedNotes.size} note(s) deleted", Toast.LENGTH_SHORT)
+                Toast.makeText(this, getString(R.string.notes_deleted, selectedNotes.size), Toast.LENGTH_SHORT)
                     .show()
                 adapter.clearSelection()
                 dialog.dismiss()
             }
-            .setNegativeButton("Cancel") { dialog, _ ->
+            .setNegativeButton(getString(R.string.cancel)) { dialog, _ ->
                 dialog.dismiss()
             }
             .show()
@@ -252,10 +253,10 @@ class MainActivity : AppCompatActivity() {
     private fun showUndoSnackbar() {
         val snackbar = com.google.android.material.snackbar.Snackbar.make(
             binding.root,
-            "Note deleted",
+            getString(R.string.note_deleted),
             com.google.android.material.snackbar.Snackbar.LENGTH_LONG
         )
-        snackbar.setAction("UNDO") {
+        snackbar.setAction(getString(R.string.undo)) {
             recentlyDeletedNote?.let { note ->
                 firebaseAuth.currentUser?.uid?.let { uid ->
                     dbRef.child(uid).child("notes").child(note.noteId).setValue(note)
@@ -314,15 +315,15 @@ class MainActivity : AppCompatActivity() {
     ) {
         val dialogBinding = DialogUpdateNoteBinding.inflate(layoutInflater)
         val dialog = androidx.appcompat.app.AlertDialog.Builder(this)
-            .setTitle("Update Note")
+            .setTitle(getString(R.string.update_note_title))
             .setView(dialogBinding.root)
-            .setPositiveButton("Update") { dialog, _ ->
+            .setPositiveButton(getString(R.string.update)) { dialog, _ ->
                 val newTitle = dialogBinding.updatenotetitle.text.toString()
                 val newDescription = dialogBinding.updatenotedescription.text.toString()
                 updateNote(noteId, currentName, currentClass, newTitle, newDescription)
                 dialog.dismiss()
             }
-            .setNegativeButton("Cancel") { dialog, _ ->
+            .setNegativeButton(getString(R.string.cancel)) { dialog, _ ->
                 dialog.dismiss()
             }
             .create()
@@ -346,10 +347,10 @@ class MainActivity : AppCompatActivity() {
 
         dbRef.child(currentUserId).child("notes").child(noteId).setValue(updatedNote)
             .addOnSuccessListener {
-                Toast.makeText(this, "Note updated successfully", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.note_updated_success), Toast.LENGTH_SHORT).show()
             }
             .addOnFailureListener {
-                Toast.makeText(this, "Update failed", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.note_update_failed), Toast.LENGTH_SHORT).show()
             }
     }
 
@@ -389,7 +390,9 @@ class MainActivity : AppCompatActivity() {
         firebaseAuth.signOut()
         // Logout flag
         val sharedPref = getSharedPreferences("MyAppPrefs", MODE_PRIVATE)
-        sharedPref.edit().putBoolean("isUserLoggedOut", true).apply()
+        sharedPref.edit {
+            putBoolean("isUserLoggedOut", true)
+        }
 
         // LoginActivity  redirect
         val intent = Intent(this, login_Activity::class.java)

@@ -1,15 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">DoubtDesk</string>
-    <string name="welcome_to_programming">Welcome to Programming !!</string>
-    <string name="welcome_to_kotlin">Welcome to Kotlin !!</string>
-    <string name="ProgrammingWorld">Programming World</string>
-    <string name="hello_kotlin">Hello Kotlin</string>
-    <string name="first_app">Sing Up</string>
-    <string name="email">Email</string>
-    <string name="password">Password</string>
-    <string name="sing_up">Sing Up</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
+    
+    <!-- Google Sign-In Configuration -->
     <string name="default_web_client_id">68684424793-2eu20tjbh6ni9jq94ncsq7pu12fj2lem.apps.googleusercontent.com</string>
+    
+    <!-- Login Activity Messages -->
+    <string name="login_empty_fields">Please fill in all fields</string>
+    <string name="login_failed">Login failed. Please check your credentials</string>
+    <string name="login_success">Login successful!</string>
+    <string name="google_signin_failed">Google Sign-In failed. Please try again</string>
+    <string name="firebase_auth_failed">Authentication failed. Please try again</string>
+    <string name="password_reset_sent">Password reset link sent to your email</string>
+    <string name="password_reset_failed">Failed to send reset email. Please try again</string>
+    <string name="enter_registered_email">Please enter your registered email address</string>
+    
+    <!-- Signup Activity Messages -->
+    <string name="signup_empty_fields">Please fill in all fields</string>
+    <string name="signup_password_mismatch">Passwords do not match</string>
+    <string name="signup_failed">Sign up failed. Please try again</string>
+    <string name="signup_success">Account created successfully!</string>
+    
+    <!-- Add Note Activity Messages -->
+    <string name="note_empty_fields">Please fill in all required fields</string>
+    <string name="note_save_success">Question submitted successfully!</string>
+    <string name="note_save_failed">Failed to submit question. Please try again</string>
+    
+    <!-- Main Activity Messages -->
+    <string name="note_updated_success">Note updated successfully!</string>
+    <string name="note_update_failed">Failed to update note. Please try again</string>
+    <string name="note_deleted">Note deleted</string>
+    <string name="notes_deleted">%1$d note(s) deleted</string>
+    <string name="no_notes_selected">No notes selected</string>
+    <string name="delete_confirmation_title">Delete Notes</string>
+    <string name="delete_confirmation_message">Are you sure you want to delete %1$d note(s)?</string>
+    <string name="undo">UNDO</string>
+    <string name="yes">Yes</string>
+    <string name="cancel">Cancel</string>
+    
+    <!-- Admin Adapter Messages -->
+    <string name="answer_empty">Please enter an answer</string>
+    <string name="answer_submitted">Answer submitted successfully!</string>
+    <string name="answer_submit_failed">Failed to submit answer: %1$s</string>
+    <string name="ai_no_answer">No answer received from AI</string>
+    <string name="ai_error">AI request failed: %1$s</string>
+    <string name="ai_network_error">Network error: %1$s</string>
+    <string name="invalid_link">Invalid or empty link</string>
+    <string name="link_error">Error opening link: %1$s</string>
+    <string name="ai_loading">Loading…</string>
+    <string name="ask_ai">🤖 Ask AI</string>
+    
+    <!-- Note Adapter Messages -->
+    <string name="invalid_unsupported_link">Invalid or unsupported link</string>
+    
+    <!-- Admin Dashboard Messages -->
+    <string name="database_error">Database error: %1$s</string>
+    <string name="no_doubts_found">No doubts found</string>
+    
+    <!-- Common Messages -->
+    <string name="error_occurred">An error occurred. Please try again</string>
+    <string name="loading">Loading…</string>
+    <string name="please_wait">Please wait…</string>
+    
+    <!-- Dialog Messages -->
+    <string name="update_note_title">Update Note</string>
+    <string name="update">Update</string>
+    
+    <!-- Empty State Messages -->
+    <string name="no_doubts_yet">No doubts yet!</string>
+    <string name="tap_to_add_question">Tap the + button to ask your first question</string>
+    
+    <!-- Toolbar Titles -->
+    <string name="my_doubts">My Doubts</string>
+    <string name="students_doubts">Students Doubts</string>
+    <string name="ask_your_question">Ask Your Question</string>
+    
+    <!-- Menu Items -->
+    <string name="logout">Logout</string>
+    <string name="select_all">Select All</string>
+    <string name="unselect_all">Unselect All</string>
+    <string name="delete">Delete</string>
+    
+    <!-- Form Hints -->
+    <string name="hint_your_name">Your Name</string>
+    <string name="hint_class">Class</string>
+    <string name="hint_subject">Subject</string>
+    <string name="hint_your_question">Your Question</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_confirm_password">Confirm Password</string>
+    <string name="hint_write_answer">Write answer here</string>
+    <string name="hint_youtube_link">Paste YouTube Link</string>
+    
+    <!-- Button Labels -->
+    <string name="submit_question">Submit Question</string>
+    <string name="login">Login</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="solve">Solve</string>
+    <string name="login_with_google">Login with Google</string>
+    <string name="signup_with_google">Signup with Google</string>
+    
+    <!-- Status Messages -->
+    <string name="solved">✓ Solved</string>
+    <string name="solved_tap_to_view">✓ Solved • Tap to view answer</string>
+    <string name="pending">⏳ Pending</string>
+    
+    <!-- Link Messages -->
+    <string name="watch_tutorial_video">Watch Tutorial Video</string>
+    <string name="open_related_link">View Answer Link</string>
+    
+    <!-- Other -->
+    <string name="welcome_back">Welcome Back</string>
+    <string name="login_to_continue">Login to continue</string>
+    <string name="create_account">Create Account</string>
+    <string name="signup_to_get_started">Sign up to get started</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="dont_have_account">Don\'t have an account? Sign Up</string>
+    <string name="already_registered">Already Registered? Sign In</string>
+    <string name="fill_details_below">Fill in the details below</string>
 </resources>
